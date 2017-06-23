@@ -28,12 +28,12 @@
     "plugin-error": "^0.1.2",
     "remarkable": "^1.7.1",
     "through2": "^2.0.3",
-    "unescape": "^1.0.0"
+    "unescape": "^1.0.1"
   },
   "devDependencies": {
+    "gulp-format-md": "^0.1.12",
     "mocha": "^3.4.2",
-    "vinyl": "^2.0.2",
-    "gulp-format-md": "^0.1.12"
+    "vinyl": "^2.0.2"
   },
   "keywords": [
     "assemble",
