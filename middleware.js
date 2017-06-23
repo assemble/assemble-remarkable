@@ -1,12 +1,7 @@
 'use strict';
 
 var path = require('path');
-var hljs = require('highlight.js');
-var extend = require('extend-shallow');
-var PluginError = require('plugin-error');
-var Remarkable = require('remarkable');
-var decode = require('unescape');
-var through = require('through2');
+var utils = require('./utils');
 
 /**
  * convert markdown to HTML
@@ -17,20 +12,20 @@ module.exports = function(options) {
     html: true,
     linkify: true,
     highlight: function(code, lang) {
-      if (lang && hljs.getLanguage(lang)) {
+      if (lang && utils.hljs.getLanguage(lang)) {
         try {
-          return hljs.highlight(lang, code).value;
+          return utils.hljs.highlight(lang, code).value;
         } catch (err) {}
       }
 
       try {
-        return hljs.highlightAuto(code).value;
+        return utils.hljs.highlightAuto(code).value;
       } catch (err) {}
       return code;
     }
   };
 
-  var opts = extend({}, defaults, options);
+  var opts = utils.extend({}, defaults, options);
 
   return function(file, next) {
     if (file.isNull()) {
@@ -43,7 +38,7 @@ module.exports = function(options) {
       return;
     }
 
-    var md = opts.remarkable || new Remarkable(opts);
+    var md = opts.remarkable || new utils.Remarkable(opts);
     var str = md.render(file.contents.toString());
     file._renderedMarkdown = true;
     file.contents = new Buffer(str);
@@ -72,6 +67,6 @@ module.exports.unescape = function(options) {
 function unescape(str) {
   var regex = /(?:\{{2,4}(.+?)\}{2,4}|&lt;%(.+)?%&gt;|\$\{(.+)?\})/g;
   return str.replace(regex, function(m) {
-    return decode(m, 'all');
+    return utils.decode(m, 'all');
   });
 }

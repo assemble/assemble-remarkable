@@ -1,7 +1,7 @@
 {
   "name": "assemble-remarkable",
   "description": "Assemble pipeline plugin for remarkable, the markdown converter for node.js. Can also be used with gulp.",
-  "version": "1.1.1",
+  "version": "1.1.4",
   "homepage": "https://github.com/assemble/assemble-remarkable",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "assemble/assemble-remarkable",
@@ -11,7 +11,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "middleware.js"
+    "middleware.js",
+    "utils.js"
   ],
   "main": "index.js",
   "engines": {
@@ -23,15 +24,16 @@
   "dependencies": {
     "extend-shallow": "^2.0.1",
     "highlight.js": "^9.12.0",
+    "lazy-cache": "^2.0.2",
     "plugin-error": "^0.1.2",
     "remarkable": "^1.7.1",
     "through2": "^2.0.3",
     "unescape": "^1.0.0"
   },
   "devDependencies": {
-    "gulp-format-md": "^0.1.12",
     "mocha": "^3.4.2",
-    "vinyl": "^2.0.2"
+    "vinyl": "^2.0.2",
+    "gulp-format-md": "^0.1.12"
   },
   "keywords": [
     "assemble",
